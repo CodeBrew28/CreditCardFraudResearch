@@ -37,7 +37,7 @@ test = sc.parallelize(testData.collect())
 model = SVMWithSGD.train(sample, iterations=100)
 
 # Compute raw scores on the test set
-predictionAndLabels = sample.map(lambda lp: (float(model.predict(lp.features)), 1.0 if lp.label == 0 else 0.0 ))
+predictionAndLabels = sample.map(lambda lp: (float(model.predict(lp.features)), lp.label ))
 
 # Instantiate metrics object
 metrics = BinaryClassificationMetrics(predictionAndLabels)
